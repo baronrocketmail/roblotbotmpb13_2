@@ -44,10 +44,10 @@ def send_mail():
     print((datetime.now()))
     pyautogui.screenshot("a.png")
     msg = EmailMessage()
-    msg["Subject"] = "img"
+    msg["Subject"] = str(datetime.now())
     msg["From"] = "baronrocketmail@gmail.com"
-    msg["to"] = "baronrocketmail@yahoo.com"
-    msg.set_content("this is the plug")
+    msg["to"] = "samuelbegie21@gmail.com"
+    msg.set_content(str(datetime.now()))
     lst = ["a.png"]
     for image in lst:
         with open("a.png", "rb") as f:
@@ -90,16 +90,16 @@ def pass_menu_cruise_game():
     pyautogui.mouseDown(button="left")
     pyautogui.hold(2)
     pyautogui.mouseUp(button="left")
-    pyautogui.moveTo(748, 1266)
+    pyautogui.moveTo(595, 846)
     pyautogui.mouseDown(button="left")
     pyautogui.hold(2)
     pyautogui.mouseUp(button="left")
     pyautogui.hold(5)
     time.sleep(3)
-    pyautogui.moveTo(582, 841)
+    pyautogui.moveTo(464, 458)
     pyautogui.click()
     pyautogui.hold(5)
-    pyautogui.moveTo(582, 840)
+    pyautogui.moveTo(465, 457)
     pyautogui.mouseDown(button="left")
     pyautogui.hold(2)
     pyautogui.mouseUp(button="left")
@@ -112,15 +112,15 @@ def enter_game():
     open_safari_smart_search()
     go_to_url(url)
     pyautogui.sleep(4)
-    pyautogui.moveTo(1252, 472)
+    pyautogui.moveTo(945, 567)
     pyautogui.click()
     pyautogui.hold(1)
-    pyautogui.moveTo(1202, 716)
+    pyautogui.moveTo(894, 480)
     pyautogui.click()
     # click tab
     pyautogui.moveTo(0, 20)
     pyautogui.click()
-    pyautogui.moveTo(542, 648)
+    pyautogui.moveTo(419, 283)
     pyautogui.click()
     time.sleep(3)
     send_mail()
