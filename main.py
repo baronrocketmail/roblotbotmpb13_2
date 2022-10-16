@@ -21,10 +21,10 @@ def main():
     session_start_time = datetime.now()
     session_end_time = datetime.now() + timedelta(seconds=session_length_choice)
 
-    image_length_choice = 300
+    image_length_choice = 50
     image_start_time = datetime.now()
     image_end_time = datetime.now() + timedelta(seconds=image_length_choice)
-
+    print("NEW TIMES")
     enter_game()
     if url == "https://www.roblox.com/games/2620293110/Cruise-Ship-Tycoon":
         pass_menu_cruise_game()
@@ -32,18 +32,60 @@ def main():
         pass
     while True:
         keep_active()
-        print("1: "+ str(session_end_time - session_start_time) + "sl:" + str(session_length_choice))
-        print("2: " + str(image_end_time - image_start_time)+"sl: " + str(image_length_choice))
-        if (session_end_time - session_start_time) < timedelta(seconds=0):
+        print("1: "+ str(session_end_time) + str( session_start_time) + "sl:" + str(session_length_choice))
+        print("2: " + str(image_end_time ) + str(image_start_time)+"sl: " + str(image_length_choice))
+        if (session_end_time - datetime.now()) < timedelta(seconds=0):
             main()
-        if (image_end_time - image_start_time) < timedelta(seconds=0):
+        if image_end_time - datetime.now() < timedelta(seconds=0):
             send_mail()
-
+            image_start_time = datetime.now()
+            image_end_time = datetime.now() + timedelta(seconds=image_length_choice)
 
 def send_mail():
     print((datetime.now()))
     pyautogui.screenshot("a.png")
     msg = EmailMessage()
+    msg["Subject"] = str(datetime.now())
+    msg["From"] = "baronrocketmail@gmail.com"
+    msg["to"] = "samuelbegie21@gmail.com"
+    msg.set_content(str(datetime.now()))
+    lst = ["a.png"]
+    for image in lst:
+        with open("a.png", "rb") as f:
+            file_data = f.read()
+            file_type = imghdr.what(f.name)
+            file_name = f.name
+            msg.add_attachment(file_data, maintype="image", subtype=file_type, filename=file_name)
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login("baronrocketmail@gmail.com", "irhnuqwvnytpshnl")
+        smtp.send_message(msg)
+    print("sent")
+
+def starting_send_mail():
+    subj = str("STARTING:" + str(datetime.now()))
+    print((datetime.now()))
+    pyautogui.screenshot("a.png")
+    msg = subj
+    msg["Subject"] = str(datetime.now())
+    msg["From"] = "baronrocketmail@gmail.com"
+    msg["to"] = "samuelbegie21@gmail.com"
+    msg.set_content(str(datetime.now()))
+    lst = ["a.png"]
+    for image in lst:
+        with open("a.png", "rb") as f:
+            file_data = f.read()
+            file_type = imghdr.what(f.name)
+            file_name = f.name
+            msg.add_attachment(file_data, maintype="image", subtype=file_type, filename=file_name)
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login("baronrocketmail@gmail.com", "irhnuqwvnytpshnl")
+        smtp.send_message(msg)
+    print("sent")
+def in_send_mail():
+    subj = str("INGAME:" + str(datetime.now()))
+    print((datetime.now()))
+    pyautogui.screenshot("a.png")
+    msg = subj
     msg["Subject"] = str(datetime.now())
     msg["From"] = "baronrocketmail@gmail.com"
     msg["to"] = "samuelbegie21@gmail.com"
