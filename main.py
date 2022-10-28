@@ -3,13 +3,14 @@ import math
 import random
 import time
 import os
+import string
 from datetime import datetime, timedelta
 
 import pyautogui
 import smtplib
 from email.message import EmailMessage
 
-url = "https://www.roblox.com/games/2620293110/Cruise-Ship-Tycoon"
+url = "https://www.roblox.com/games/2534724415/Emergency-Response-Liberty-County"
 
 """
 NOTE: MAKE SURE SAFARI OPENS IN FULL SCREEN
@@ -17,11 +18,14 @@ NOTE: MAKE SURE SAFARI OPENS IN FULL SCREEN
 
 
 def main():
+
     session_length_choice = random.choice(session_length)
     session_start_time = datetime.now()
     session_end_time = datetime.now() + timedelta(seconds=session_length_choice)
 
-    image_length_choice = 50
+    image_length_choice = 180
+
+
     image_start_time = datetime.now()
     image_end_time = datetime.now() + timedelta(seconds=image_length_choice)
     print("NEW TIMES")
@@ -29,17 +33,40 @@ def main():
     if url == "https://www.roblox.com/games/2620293110/Cruise-Ship-Tycoon":
         pass_menu_cruise_game()
     elif url == "https://www.roblox.com/games/2534724415/Emergency-Response-Liberty-County":
-        pass
+        enter_emergency_response()
     while True:
         keep_active()
-        print("1: "+ str(session_end_time) + str( session_start_time) + "sl:" + str(session_length_choice))
-        print("2: " + str(image_end_time ) + str(image_start_time)+"sl: " + str(image_length_choice))
+        print("1: " + str(session_end_time) + str(session_start_time) + "sl:" + str(session_length_choice))
+        print("2: " + str(image_end_time) + str(image_start_time) + "sl: " + str(image_length_choice))
         if (session_end_time - datetime.now()) < timedelta(seconds=0):
             main()
         if image_end_time - datetime.now() < timedelta(seconds=0):
             send_mail()
             image_start_time = datetime.now()
             image_end_time = datetime.now() + timedelta(seconds=image_length_choice)
+
+
+def enter_emergency_response():
+    time.sleep(10)
+    pyautogui.moveTo(548, 304)
+    pyautogui.click()
+    pyautogui.moveTo(243, 624)
+    pyautogui.click()
+    pyautogui.mouseDown()
+    time.sleep(2)
+    pyautogui.mouseUp()
+    time.sleep(2)
+    pyautogui.moveTo(255, 660)
+    pyautogui.mouseDown()
+    time.sleep(2)
+    pyautogui.mouseUp()
+    pyautogui.typewrite(
+        [str(random.randint(1, 9)), str(random.randint(1, 9)), str(random.randint(1, 9)), str(random.randint(1, 9))])
+    pyautogui.moveTo(249, 712)
+    pyautogui.mouseDown()
+    time.sleep(2)
+    pyautogui.mouseUp()
+
 
 def send_mail():
     print((datetime.now()))
@@ -61,6 +88,7 @@ def send_mail():
         smtp.send_message(msg)
     print("sent")
 
+
 def starting_send_mail():
     subj = str("STARTING:" + str(datetime.now()))
     print((datetime.now()))
@@ -81,6 +109,8 @@ def starting_send_mail():
         smtp.login("baronrocketmail@gmail.com", "irhnuqwvnytpshnl")
         smtp.send_message(msg)
     print("sent")
+
+
 def in_send_mail():
     subj = str("INGAME:" + str(datetime.now()))
     print((datetime.now()))
@@ -127,7 +157,7 @@ def keep_active():
 
 
 def pass_menu_cruise_game():
-    time.sleep(7)
+    time.sleep(10)
     pyautogui.hold(2)
     pyautogui.mouseDown(button="left")
     pyautogui.hold(2)
